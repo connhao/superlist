@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #coding:utf-8 
 from selenium import webdriver 
+from selenium.webdriver.common.keys import Keys 
 import unittest 
 
 class NewVisitorTest(unittest.TestCase):
@@ -36,18 +37,21 @@ class NewVisitorTest(unittest.TestCase):
 
 		#她按回车键后，页面更新了
 		#待办事项表格中显示了“1：Buy peacock feathers” 
-		inputbox.send_keys(Keys.Enter)
+		inputbox.send_keys(Keys.ENTER)
+
+		table = self.browser.find_element_by_id('id_list_table') 
+		rows = table.find_elements_by_tag_name('tr') 
+
+		self.assertTrue(
+			any(row.text == '1: Buy peacock feathers' for row in rows),
+			"New to-do item did not appear in table" 
+			)
 
 		#页面中又显示了一个文本框，可以输入其它待办事项 
 		#她输入了“Use peacock feathers” to  make a fly”(使用孔雀羽毛做假蝇)
 		#伊迪丝做事很有条理 
 		self.fail('Finish the test!') 
 
-		table = self.browser.find_element_by_id('id_list_table') 
-		rows = table.find_element_by_tag_name('tr') 
-		self.assertTrue(
-			any(row.text == '1: Buy peacock feathers' for row in rows) 
-			)
 
 		#页面再次更新，她的清单中显示了两个待办事项
 
