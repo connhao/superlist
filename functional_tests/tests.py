@@ -2,9 +2,9 @@
 #coding:utf-8 
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys 
-import unittest 
+from django.test import LiveServerTestCase 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox() 
@@ -16,7 +16,7 @@ class NewVisitorTest(unittest.TestCase):
 
         #伊迪丝听说有一个很酷的在线待办事项应用 
         #她去看了这个应用的首页 
-        self.browser.get('http://localhost:8000') 
+        self.browser.get(self.live_server_url) 
 
 
         #他注意到网页的标题和头部都包含“To_Do”这个词
