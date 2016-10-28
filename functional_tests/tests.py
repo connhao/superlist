@@ -46,7 +46,7 @@ class NewVisitorTest(LiveServerTestCase):
         #待办事项表格中显示了“1：Buy peacock feathers” 
         inputbox.send_keys(Keys.ENTER)
         import time
-        time.sleep(2)
+        time.sleep(3)
         edith_list_url = self.browser.current_url 
         self.assertRegex(edith_list_url, '/lists/.+') 
         self.check_for_row_in_list_table('1: Buy peacock feathers')
@@ -66,7 +66,7 @@ class NewVisitorTest(LiveServerTestCase):
         # rows = table.find_elements_by_tag_name('tr') 
         # self.assertIn('1: Buy peacock feathers',[row.text for row in rows])
         # self.assertIn('2: Use peacock feathers to make a fly',[row.text for row in rows])
-        self.check_for_row_in_list_table('2: Use peacock feathres to make a fly')
+        self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
         self.check_for_row_in_list_table('1: Buy peacock feathers') 
 
         #现在一个叫做弗朗西斯的新用户访问了网站
