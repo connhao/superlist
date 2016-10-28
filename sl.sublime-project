@@ -12,6 +12,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Users\\hao\\AppData\\Local\\Programs\\Python\\Python35-32"
 		}
 	]
 }
