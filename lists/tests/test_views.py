@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.http import HttpRequest 
 from django.template.loader import render_to_string
 from django.utils.html import escape
+import time
 
 from lists.views import home_page, view_list
 from lists.models import Item, List
@@ -96,7 +97,7 @@ class ListViewTest(TestCase):
         correct_list = List.objects.create()
 
         self.client.post(
-            '/lists/%d/add_item' % (correct_list.id),
+            '/lists/%d/' % (correct_list.id,),
             data={'item_text': 'A new item for an existing list'}
         )
 
@@ -108,9 +109,8 @@ class ListViewTest(TestCase):
     def test_redirects_to_list_view(self):
         other_list = List.objects.create()
         correct_list = List.objects.create()
-
         response = self.client.post(
-                '/lists/%d/add_item' % (correct_list.id),
+                '/lists/%d/' % (correct_list.id,),
                 data={'item_text': 'A new item for an existing list'}
         )
 
@@ -120,11 +120,9 @@ class ListViewTest(TestCase):
         other_list = List.objects.create()
         correct_list = List.objects.create()
 
-        response = self.client.post(
-                '/lists/%d/' % (correct_list.id)
-        )
-
-        self.assertEqual(correct_list, response.context['list'])
+        #response = self.client.post('/lists/%d/' % (correct_list.id,))
+        response = self.client.get('/lists/%d/' % (correct_list.id,))
+        self.assertEqual(response.context['list'], correct_list)
 
     def test_validation_errors_are_sent_back_to_home_page_template(self):
         response = self.client.post('/lists/new', data={'item_text':''})
