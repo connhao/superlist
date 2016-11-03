@@ -14,7 +14,7 @@ class LayoutAndStylingTest(FunctionalTest):
         time.sleep(3)
 
         #她看到输入框完美的居中显示
-        inputbox= self.browser.find_element_by_id('id_new_item')
+        inputbox= self.get_item_input_box()
         inputbox.send_keys('testing\n')
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
