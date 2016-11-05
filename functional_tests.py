@@ -66,7 +66,7 @@ class NewVisitorTest(unittest.TestCase):
 
         #她看到网站为她生成了唯一的URL 
         #而且页面中有一些文字解说这个功能 
-        self.fail('Finish the test!') 
+        #self.fail('Finish the tests!')
 
         #她访问那个URL，发现他的待办事项列表还在
         #她很满意，去睡觉了 
